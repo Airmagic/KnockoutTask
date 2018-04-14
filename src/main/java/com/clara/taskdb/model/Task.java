@@ -10,12 +10,6 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Task(@Size(min = 1) String text, boolean urgent, boolean completed) {
-        this.text = text;
-        this.urgent = urgent;
-        this.completed = completed;
-    }
-
     @Column(nullable = false)
     @Size(min = 1)
 
@@ -24,7 +18,55 @@ public class Task {
     private boolean urgent;
     private boolean completed = false;
 
-//    Need this empty construtor
+    public Task(@Size(min = 1) String text, boolean urgent, boolean completed) {
+        this.text = text;
+        this.urgent = urgent;
+        this.completed = completed;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public boolean isUrgent() {
+        return urgent;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setUrgent(boolean urgent) {
+        this.urgent = urgent;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", urgent=" + urgent +
+                ", completed=" + completed +
+                '}';
+    }
+
+    //    Need this empty construtor
     public Task(){}
 
 }
