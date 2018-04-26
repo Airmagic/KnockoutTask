@@ -18,6 +18,10 @@ import java.util.List;
         @Transactional
         @Modifying
         @Query("UPDATE Task t set t.completed = ?1 where t.id = ?2")
-        int setTaskCompleted(boolean comleted, long id);
+        int setTaskCompleted(boolean completed, long id);
+        @Transactional
+        @Modifying
+        @Query("UPDATE Task t set t.urgent = ?1 where t.id = ?2")
+        int toogleUrgent(boolean urgent, long id);
     }
 

@@ -70,6 +70,28 @@ $(function(){
         };
 
 
+        self.taskUrgent = function(task) {
+
+            // if urgent, make not urgent, and vice versa
+            task.urgent(!task.urgent());
+
+            $.ajax({
+                type: 'patch',
+                url: 'urgent',
+                data: ko.toJSON(task),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success: function(res) {
+                    self.loadAllTasks();
+                    self.notification(`Task "${task.text()}" updated`) },
+                error: function() {
+                    self.notification('Sorry, error updating task');
+                }
+            })
+        };
+
         self.taskCompleted = function(task) {
 
             // if done, make not done, and vice versa
@@ -91,7 +113,6 @@ $(function(){
                 }
             })
         };
-
 
         self.taskDelete = function(task) {
 

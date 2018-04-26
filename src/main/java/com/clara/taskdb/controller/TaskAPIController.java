@@ -50,6 +50,15 @@ public class TaskAPIController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @PatchMapping(value="urgent")
+    public ResponseEntity toggleTaskAsUrgent(@RequestBody Task task){
+        int tasksUpdated = tasks.toogleUrgent(task.isUrgent(), task.getId());
+        if (tasksUpdated == 0){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
     @DeleteMapping(value = "/delete")
     public ResponseEntity deleteTast(@RequestBody Task task){
         tasks.delete(task);
